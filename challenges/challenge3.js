@@ -61,21 +61,37 @@ function uppercaser(str) {
     });
 }
 
+function spacer(str) {
+  return new Promise( function(resolve, reject) {
+    setTimeout( function() {
+      if (typeof str === 'string') {
+        new_str = ''
+        for (let i=0; i<str.length; i++) {
+          new_str = new_str + ` ${str[i]}` 
+        };
+        resolve(new_str);
+      } else {
+        reject('Invalid string for spacer.')
+      }
+    }, 400);
+  });
+}
+
 async function greetAndUppercase(name) {
     greeting = await greet(name)
     uppercasedGreeting = await uppercaser(greeting)
-    return uppercasedGreeting
+    uppercasedAndSpacedGreeting = await spacer(uppercasedGreeting)
+    return uppercasedAndSpacedGreeting
 }
 
-/* Uncomment me! #1 */
 // result = greetAndUppercase('Ducky')
 // console.log(result)
 
 /* Uncomment me! #2 */
-// greetAndUppercase('Ducky')
-//     .then(function(result) {
-//         console.log(result)
-//     })
-//     .catch(function(err) {
-//         console.log(err)
-//     })
+greetAndUppercase('Ducky')
+    .then(function(result) {
+        console.log(result)
+    })
+    .catch(function(err) {
+        console.log(err)
+    })

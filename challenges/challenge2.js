@@ -31,20 +31,20 @@
  *******************************************************************************
  */
 
- /**
-  * Asynchronously returns a greeting for a specified name.
-  * @param name The name of the person to greet.
-  */
+/**
+ * Asynchronously returns a greeting for a specified name.
+ * @param name The name of the person to greet.
+ */
 function greet(name) {
-    return new Promise(function(resolve, reject) {
-      setTimeout(function() {
-        if (typeof name === 'string') { 
-          resolve('Hello there, ' + name);
-        } else {
-          reject('Name must be a string!');
-        }
-      }, 1000);
-    });
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      if (typeof name === 'string') {
+        resolve('Hello there, ' + name);
+      } else {
+        reject('Name must be a string!');
+      }
+    }, 500);
+  });
 }
 
 /**
@@ -52,28 +52,50 @@ function greet(name) {
  * @param {*} str The string to uppercase.
  */
 function uppercaser(str) {
-    return new Promise(function(resolve, reject) {
-        setTimeout(function() {
-        if (typeof str === 'string') {
-            resolve(str.toUpperCase());
-        } else {
-            reject('Argument to uppercaser must be string');
-        }
-        }, 1500);
-    });
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      if (typeof str === 'string') {
+        resolve(str.toUpperCase());
+      } else {
+        reject('Argument to uppercaser must be string');
+      }
+    }, 500);
+  });
 }
 
-name = 'Ducky'
-my_str = 'Make School is Awesome!!!'
+function spacer(str) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      if (typeof str === 'string') {
+        let new_str = ''
+        for (let i = 0; i < str.length; i++) {
+          new_str = new_str + ' ' + str[i];
+        }
+        resolve(new_str);
+      } else {
+        reject('Invalid string for spacer.');
+      }
+    }, 1000);
+  });
+}
+
+name = 'Name'
+my_str = 'Some string 1'
+spacer_string = 'SomeString2'
 
 greet(name)
-    .then((greetResult) => {
-        console.log(greetResult)
-        return uppercaser(my_str);
-    })
-    .then((uppercaserResult) => {
-        console.log(uppercaserResult)
-    }).catch((err) => {
-        console.log('Received an error!')
-        console.log(err);
-    });
+  .then((greetResult) => {
+    console.log(greetResult)
+    return uppercaser(my_str);
+  })
+  .then((uppercaserResult) => {
+    console.log(uppercaserResult)
+    return spacer(spacer_string)
+  })
+  .then((spacerResult) => {
+    console.log(spacerResult)
+  })
+  .catch((err) => {
+    console.log('Received an error!')
+    console.log(err);
+  });

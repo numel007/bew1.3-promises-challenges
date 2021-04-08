@@ -19,17 +19,28 @@
  */
 
 /* This function takes a callback as a parameter. */
-function snooze(action) {
-    setTimeout(function() {
-      action();
-    }, 2000);
+// function snooze(action) {
+//     setTimeout(function() {
+//       action();
+//     }, 2000);
+// }
+// console.log('Step 1');
+
+// snooze( function() {
+//     console.log('Step 2');
+//     console.log("Async Action completed via callback");
+// } );
+
+// console.log('Step 3');
+
+const snooze = (action) => {
+  setTimeout(action, 2000);
 }
-console.log('Step 1');
 
-snooze( function() {
-    console.log('Step 2');
-    console.log("Async Action completed via callback");
-} );
+console.log('Step 1')
 
-console.log('Step 3');
-
+snooze( () => {
+  console.log('Step 2');
+  console.log('Async action completed via callback');
+})
+console.log('Step 3')
